@@ -3,10 +3,17 @@
 
 
     document.addEventListener("deviceready", onDeviceReady, false);
-alert('ready');
+
 
     // Cordova is ready
     function onDeviceReady() {
+
+alert('ready');
+
+alert(window.sqlitePlugin);
+
+alert(window.sqlitePlugin.openDatabase);
+
       var db = window.sqlitePlugin.openDatabase({name: "DB"});
 
 alert(db);
