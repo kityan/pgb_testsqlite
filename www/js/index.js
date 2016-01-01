@@ -48,7 +48,7 @@ var app = {
 
 	function insert(){
 		calls++;
-	        document.getElemenById('outp').innerHTML = calls;
+	        document.getElementById('outp').innerHTML = calls;
 		if (calls < 10000){
 		      db.transaction(function(tx) {
 		        tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
