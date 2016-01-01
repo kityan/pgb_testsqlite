@@ -28,14 +28,14 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
 
-	window.onload =  function(){
-		//	 если мы не в phoneGap
-		if (!document.deviceready){
-			alert('not pgb!');
-			this.openDbUsing(window);
-		} else {
+//	window.onload =  function(){
+//		//	 если мы не в phoneGap
+//		if (!document.deviceready){
+//			alert('not pgb!');
+//			this.openDbUsing(window);
+//		} else {
 		        document.addEventListener('deviceready', this.onDeviceReady, false);
-		}
+//		}
 	}
 
     },
