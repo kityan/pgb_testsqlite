@@ -34,8 +34,9 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-	console.log(window.plugins);
-	console.log(window.LowLatencyAudio);
+	alert(window.sqlitePlugin);
+	alert(JSON.stringify(window.plugins));
+
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
