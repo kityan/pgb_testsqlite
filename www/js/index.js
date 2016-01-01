@@ -46,6 +46,7 @@ console.log(document.ondeviceready);
 	 this.db = manager.openDatabase("ToDo", "0.1", "A list of to do items.", 200000);
 
 this.db.transaction(function (tx) {
+   tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
    tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
       var len = results.rows.length;
 	alert(len);
