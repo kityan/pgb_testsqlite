@@ -28,35 +28,10 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
 
-console.log(document.deviceready);
-console.log(document.ondeviceready);
-//	window.onload =  function(){
-//		//	 если мы не в phoneGap
-//		if (!document.deviceready){
-//			alert('not pgb!');
-		//	this.openDbUsing(window);
-//		} else {
 		        document.addEventListener('deviceready', this.onDeviceReady, false);
-//		}
-//	}
 
     },
 
-	openDbUsing: function(manager){
-	 //this.db = manager.openDatabase("ToDo", "0.1", "A list of to do items.", 200000);
-this.db = manager.openDatabase({name: "ToDo"});
-
-this.db.transaction(function (tx) {
-   tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)', function(e) {alert(e.message);});
-   tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {alert(len);}, function(e) {alert(e.message);});
-});
-
-this.db.transaction(function (tx) {
-   tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
-   tx.executeSql('INSERT INTO LOGS (id, log) VALUES (1, "foobar")');
-   tx.executeSql('INSERT INTO LOGS (id, log) VALUES (2, "logmsg")');
-});
-	},
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
@@ -66,9 +41,8 @@ this.db.transaction(function (tx) {
 	//alert(window.sqlitePlugin);
 	//alert(JSON.stringify(window.plugins));
 
-alert(window.sqlitePlugin);
+	alert(window.sqlitePlugin);
 
-	 this.openDbUsing(window.sqlitePlugin);
 
 
     },
