@@ -17,6 +17,7 @@
  * under the License.
  */
 var app = {
+	db: {},
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -26,16 +27,44 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+
+	// если мы не в phoneGap
+	if (!document.deviceready){
+		alert('not pgb!');
+		this.openDbUsing(window);
+	} else {
+	        document.addEventListener('deviceready', this.onDeviceReady, false);
+	}
+
     },
+
+	openDbUsing: function(manager){
+	 this.db = manager.openDatabase("ToDo", "0.1", "A list of to do items.", 200000);
+
+this.db.transaction(function (tx) {
+   tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
+      var len = results.rows.length;
+	alert(len);
+   }, null);
+});
+
+this.db.transaction(function (tx) {
+   tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
+   tx.executeSql('INSERT INTO LOGS (id, log) VALUES (1, "foobar")');
+   tx.executeSql('INSERT INTO LOGS (id, log) VALUES (2, "logmsg")');
+});
+	},
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-	alert(window.sqlitePlugin);
-	alert(JSON.stringify(window.plugins));
+        //app.receivedEvent('deviceready');
+	//alert(window.sqlitePlugin);
+	//alert(JSON.stringify(window.plugins));
+
+	 this.openDbUsing(window.sqlitePlugin);
+
 
     },
     // Update DOM on a Received Event
