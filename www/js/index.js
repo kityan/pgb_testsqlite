@@ -67,6 +67,8 @@ this.db.transaction(function (tx) {
 	//alert(window.sqlitePlugin);
 	//alert(JSON.stringify(window.plugins));
 
+alert(window.sqlitePlugin);
+
 	 this.openDbUsing(window.sqlitePlugin);
 
 
