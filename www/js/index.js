@@ -34,7 +34,7 @@ console.log(document.ondeviceready);
 //		//	 если мы не в phoneGap
 //		if (!document.deviceready){
 //			alert('not pgb!');
-//			this.openDbUsing(window);
+		//	this.openDbUsing(window);
 //		} else {
 		        document.addEventListener('deviceready', this.onDeviceReady, false);
 //		}
@@ -43,14 +43,12 @@ console.log(document.ondeviceready);
     },
 
 	openDbUsing: function(manager){
-	 this.db = manager.openDatabase("ToDo", "0.1", "A list of to do items.", 200000);
+	 //this.db = manager.openDatabase("ToDo", "0.1", "A list of to do items.", 200000);
+this.db = manager.openDatabase({name: "ToDo"});
 
 this.db.transaction(function (tx) {
-   tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
-   tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
-      var len = results.rows.length;
-	alert(len);
-   }, null);
+   tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)', function(e) {alert(e.message);});
+   tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {alert(len);}, function(e) {alert(e.message);});
 });
 
 this.db.transaction(function (tx) {
