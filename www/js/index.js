@@ -57,6 +57,8 @@ var app = {
 		}
 	}
 
+	insert();
+
 
 
     },
