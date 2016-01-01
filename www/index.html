@@ -9,7 +9,10 @@ alert('ready');
     function onDeviceReady() {
       var db = window.sqlitePlugin.openDatabase({name: "DB"});
 
+alert(db);
+
       db.transaction(function(tx) {
+	alert('2');
         tx.executeSql('DROP TABLE IF EXISTS test_table');
         tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
 
