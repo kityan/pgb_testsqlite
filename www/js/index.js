@@ -52,13 +52,20 @@ alert(db);
 
       db.transaction(function(tx) {
 	alert('2');
-        tx.executeSql('DROP TABLE IF EXISTS test_table');
+        //tx.executeSql('DROP TABLE IF EXISTS test_table');
         tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
 
         // demonstrate PRAGMA:
         db.executeSql("pragma table_info (test_table);", [], function(res) {
           alert("PRAGMA res: " + JSON.stringify(res));
         });
+
+
+	for (var i = 0; i < 1000000; i++){
+	        tx.executeSql("INSERT INTO test_table (data, data_num) VALUES (?,?)", ["11111111111111111111111111111111111122222222222222222222222222222", 100]);
+	}
+alert('ok!');
+
 
         tx.executeSql("INSERT INTO test_table (data, data_num) VALUES (?,?)", ["test", 100], function(tx, res) {
           alert("insertId: " + res.insertId + " -- probably 1");
