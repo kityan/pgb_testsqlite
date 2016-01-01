@@ -28,6 +28,8 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
 
+console.log(document.deviceready);
+console.log(document.ondeviceready);
 //	window.onload =  function(){
 //		//	 если мы не в phoneGap
 //		if (!document.deviceready){
@@ -36,7 +38,7 @@ var app = {
 //		} else {
 		        document.addEventListener('deviceready', this.onDeviceReady, false);
 //		}
-	}
+//	}
 
     },
 
