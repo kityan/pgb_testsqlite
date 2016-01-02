@@ -54,12 +54,13 @@ var app = {
 
 		if (calls < 10000){
 		      db.transaction(function(tx) {
-			tx.executeSql('DROP TABLE IF EXISTS test_table');
+			//tx.executeSql('DROP TABLE IF EXISTS test_table');
 		        tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
 		        tx.executeSql("INSERT INTO test_table (id, data, data_num) VALUES (?,?,?)", [calls, Math.random() + "111111111111111111111111111111111111222222222222222222222222222225", 100]);
 		      }, function(e){alert('err'); alert(e.message); alert(JSON.stringify(e));}, insert);
 		}
 	}
+
 
 	insert();
 
