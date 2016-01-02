@@ -42,7 +42,7 @@ var app = {
 	//alert(JSON.stringify(window.plugins));
 
 
-      var db = window.sqlitePlugin.openDatabase({name: "DB"});
+      var db = window.sqlitePlugin.openDatabase({name: "my.db"});
 
       var calls = 0;
 
@@ -56,7 +56,7 @@ var app = {
 		      db.transaction(function(tx) {
 			tx.executeSql('DROP TABLE IF EXISTS test_table');
 		        tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
-		        tx.executeSql("INSERT INTO test_table (id, data, data_num) VALUES (?,?,?)", [calls, "11111111111111111111111111111111111122222222222222222222222222222", 100]);
+		        tx.executeSql("INSERT INTO test_table (id, data, data_num) VALUES (?,?,?)", [calls, Math.random() + "111111111111111111111111111111111111222222222222222222222222222225", 100]);
 		      }, function(e){alert('err'); alert(e.message); alert(JSON.stringify(e));}, insert);
 		}
 	}
