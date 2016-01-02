@@ -56,7 +56,7 @@ var app = {
 		      db.transaction(function(tx) {
 		        tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
 		        tx.executeSql("INSERT INTO test_table (id, data, data_num) VALUES (?,?,?)", [calls, "11111111111111111111111111111111111122222222222222222222222222222", 100]);
-		      }, function(){alert('err');}, insert);
+		      }, function(e){alert('err'); alert(e.message); alert(JSON.stringify(e);}, insert);
 		}
 	}
 
