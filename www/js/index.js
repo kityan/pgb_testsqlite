@@ -47,13 +47,16 @@ var app = {
       var calls = 0;
 
 	function insert(){
+		if (calls == 0){alert('start!');}
+
 		calls++;
 	        document.getElementById('outp').innerHTML = calls;
+
 		if (calls < 10000){
 		      db.transaction(function(tx) {
 		        tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
-		        tx.executeSql("INSERT INTO test_table (data, data_num) VALUES (?,?)", ["11111111111111111111111111111111111122222222222222222222222222222", 100]);
-		      }, function(){}, insert);
+		        tx.executeSql("INSERT INTO test_table (id, data, data_num) VALUES (?,?,?)", [calls, "11111111111111111111111111111111111122222222222222222222222222222", 100]);
+		      }, function(){alert('err');}, insert);
 		}
 	}
 
